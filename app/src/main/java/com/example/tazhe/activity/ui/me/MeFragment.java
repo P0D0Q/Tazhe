@@ -24,8 +24,15 @@ public class MeFragment extends Fragment {
         meViewModel =
                 ViewModelProviders.of(this).get(MeViewModel.class);
         View root = inflater.inflate(R.layout.fragment_me, container, false);
-        /*final ImageView imageView = root.findViewById(R.id.account);
-        meViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        final ImageView account = root.findViewById(R.id.account);
+        final ImageView collected = root.findViewById(R.id.collected);
+        final ImageView message = root.findViewById(R.id.message);
+        final ImageView chart = root.findViewById(R.id.chart);
+
+
+
+
+        /*meViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 imageView.setText(s);
