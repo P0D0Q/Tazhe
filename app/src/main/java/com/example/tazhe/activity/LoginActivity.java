@@ -106,6 +106,11 @@ public class LoginActivity extends AppCompatActivity implements RetrofitListener
             Intent intent = new Intent(LoginActivity.this, NavigationActivity.class);
             startActivity(intent);
             Toast.makeText(LoginActivity.this, "登陆成功", Toast.LENGTH_SHORT).show();
+            SharedPreferences sp= getSharedPreferences("UserInfo",
+                    MODE_PRIVATE);
+            SharedPreferences.Editor editor = sp.edit();
+            editor.putString("user_id", user.getData().getUser_id());
+            editor.commit();
         }
 
     }

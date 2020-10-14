@@ -18,5 +18,5 @@ public class MeViewModel extends ViewModel {
         return mText;
     }*/
 
-    
+
 }

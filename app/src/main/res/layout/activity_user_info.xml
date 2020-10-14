@@ -7,64 +7,95 @@
     tools:context=".activity.UserInfoActivity">
 
     <EditText
-        android:id="@+id/new2pass"
+        android:id="@+id/newidcard"
         android:layout_width="254dp"
         android:layout_height="50dp"
-        android:layout_marginTop="160dp"
+        android:layout_marginBottom="21dp"
         android:ems="10"
-        android:hint="确认新密码"
+        android:hint="输入身份证号"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/btnreg2"
+        app:layout_constraintBottom_toTopOf="@+id/btnnew"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.753" />
+        app:layout_constraintTop_toBottomOf="@+id/newphonenum" />
 
     <EditText
         android:id="@+id/oldpass"
         android:layout_width="254dp"
         android:layout_height="50dp"
-        android:layout_marginTop="248dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="21dp"
         android:ems="10"
         android:hint="输入旧密码"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/regpass"
+        app:layout_constraintBottom_toTopOf="@+id/newpass"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.99" />
+        app:layout_constraintTop_toBottomOf="@+id/newusername" />
+
+    <EditText
+        android:id="@+id/newusername"
+        android:layout_width="254dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="77dp"
+        android:layout_marginBottom="17dp"
+        android:ems="10"
+        android:hint="输入用户名"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/oldpass"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/newpass"
         android:layout_width="254dp"
         android:layout_height="50dp"
-        android:layout_marginTop="340dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="17dp"
         android:ems="10"
         android:hint="输入新密码"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/reg2pass"
+        app:layout_constraintBottom_toTopOf="@+id/new2pass"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.992" />
+        app:layout_constraintTop_toBottomOf="@+id/oldpass" />
+
+    <EditText
+        android:id="@+id/new2pass"
+        android:layout_width="254dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="22dp"
+        android:ems="10"
+        android:hint="确认新密码"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/newphonenum"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/newpass" />
 
     <Button
         android:id="@+id/btnnew"
         android:layout_width="254dp"
         android:layout_height="50dp"
+        android:layout_marginBottom="180dp"
         android:background="@drawable/button_circle_shape"
         android:backgroundTint="#009688"
         android:text="更新"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.735" />
+        app:layout_constraintTop_toBottomOf="@+id/newidcard" />
+
+    <EditText
+        android:id="@+id/newphonenum"
+        android:layout_width="254dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="26dp"
+        android:ems="10"
+        android:hint="输入电话号码"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/newidcard"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/new2pass" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

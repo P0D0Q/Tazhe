@@ -2,7 +2,9 @@ package com.example.tazhe.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -18,8 +20,8 @@ import com.example.tazhe.utils.MD5;
 
 public class UserInfoActivity extends AppCompatActivity implements RetrofitListener<UserInfo> {
 
-    private EditText newpass,oldpass,new2pass;
-    private String Newpassword,Oldpassword,New2password;
+    private EditText newpass,oldpass,new2pass,newusername,newphonenum,newidcard;
+    private String Newpassword,Oldpassword,New2password,Newusername,Newphonenum,Newidcard,User_id;
     private Button btnnew;
 
     @Override
@@ -30,12 +32,13 @@ public class UserInfoActivity extends AppCompatActivity implements RetrofitListe
         initEvents();
     }
 
-
-
     private void initViews() {
         newpass=findViewById(R.id.newpass);
         oldpass=findViewById(R.id.oldpass);
         new2pass=findViewById(R.id.new2pass);
+        newusername=findViewById(R.id.newusername);
+        newphonenum=findViewById(R.id.newphonenum);
+        newidcard=findViewById(R.id.newidcard);
         btnnew=findViewById(R.id.btnnew);
     }
 
@@ -43,6 +46,10 @@ public class UserInfoActivity extends AppCompatActivity implements RetrofitListe
         Newpassword=newpass.getText().toString().trim();
         Oldpassword=oldpass.getText().toString().trim();
         New2password=new2pass.getText().toString().trim();
+        Newusername=newusername.getText().toString().trim();
+        Newphonenum=newphonenum.getText().toString().trim();
+        Newidcard=newidcard.getText().toString().trim();
+
     }
 
     private void initEvents() {
@@ -64,8 +71,16 @@ public class UserInfoActivity extends AppCompatActivity implements RetrofitListe
                     return;
                 }else {
                     String md5password = MD5.md5(Newpassword);
+                    SharedPreferences sp= getSharedPreferences("UserInfo",
+                            MODE_PRIVATE);
+                    String User_id =sp.getString("user_id", "");
                     UserModel userModel = new UserModel();
-                    userModel.UpDatebyid(md5password, UserInfoActivity.this);
+                    userModel.UpDatebyid(User_id,
+                            md5password,
+                            Newusername,
+                            Newphonenum,
+                            Newidcard,
+                            UserInfoActivity.this);
 
                 }
 
@@ -79,14 +94,15 @@ public class UserInfoActivity extends AppCompatActivity implements RetrofitListe
         });
     }
 
+
     @Override
     public void onSuccess(UserInfo user, int flag) {
         if (user!=null&&user.getStatus()==0) {
             Intent intent = new Intent(UserInfoActivity.this, NavigationActivity.class);
             startActivity(intent);
-            Toast.makeText(UserInfoActivity.this, "注册成功", Toast.LENGTH_SHORT).show();
+            Toast.makeText(UserInfoActivity.this, "更新成功", Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(UserInfoActivity.this, "注册失败", Toast.LENGTH_SHORT).show();
+            Toast.makeText(UserInfoActivity.this, "更新失败", Toast.LENGTH_SHORT).show();
         }
 
     }

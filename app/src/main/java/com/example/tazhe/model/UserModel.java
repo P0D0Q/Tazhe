@@ -26,8 +26,8 @@ public class UserModel extends RetrofitBaseModel {
         Call call = userService.register(username, password);
         bindCallback(call,listener, Constants.USEREGISTER);
     }
-    public void UpDatebyid(String password, final UserInfoActivity listener) {
-        Call call = userService.UpDatebyid(password);
+    public void UpDatebyid(String user_id,String password,String username,String phonenumber,String idcard ,final UserInfoActivity listener) {
+        Call call = userService.UpDatebyid(user_id,password,username,phonenumber,idcard);
         bindCallback(call,listener, Constants.USERINFO);
     }
 
