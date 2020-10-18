@@ -19,4 +19,15 @@ public class VideoModel extends RetrofitBaseModel {
         bindCallback(call, listener, Constants.GETALLVIDEO);
     }
 
+    public void VideoInfo( int video_id,final RetrofitListener listener) {
+        Call call = videoService.VideoInfo(video_id);
+        bindCallback(call, listener, Constants.GETVIDEOINFO);
+    }
+
+    public void Comments(  int video_id,final RetrofitListener listener) {
+        Call call = videoService.Comments(video_id);
+        bindCallback(call, listener, Constants.GETCOMMENTBYID);
+    }
+
+
 }
