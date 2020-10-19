@@ -17,7 +17,7 @@ public interface VideoService {
     @GET("api/video/allVideo")
     Call<VideoInfo> VideoInfo(@Query("video_id") int video_id);
 
-    @GET("api/video/allVideo")
+    @GET("api/comment/allcomment")
     Call<CommentsInfo> Comments(@Query("video_id") int video_id);
 
 

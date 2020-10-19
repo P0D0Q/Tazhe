@@ -1,16 +1,23 @@
 package com.example.tazhe.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.tazhe.R;
+import com.example.tazhe.adapter.CommentAdapter;
+import com.example.tazhe.adapter.VideoAdapter;
+import com.example.tazhe.beans.CommentsInfo;
 import com.example.tazhe.beans.VideoInfo;
 import com.example.tazhe.constants.Constants;
 import com.example.tazhe.listener.RetrofitListener;
@@ -22,9 +29,14 @@ import java.util.List;
 public class VideoInfoActivity extends AppCompatActivity implements RetrofitListener {
 
     private TextView videoname,videoframer,videotype,videoinfo,specialarea;
-    private ImageView videopic,playvideo;
+    private ImageView videopic;
+    private EditText comment;//评论视频
     private List<VideoInfo.DataBean> list;
     private Context context;
+
+    private RecyclerView recyclerView;
+    private CommentAdapter adapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,13 +44,14 @@ public class VideoInfoActivity extends AppCompatActivity implements RetrofitList
         setContentView(R.layout.activity_video_info);
         initViews();
         initEvents();
+        initData();
     }
 
     private void VideoInfo(int video_id) {
         VideoModel videoModel=new VideoModel();
         videoModel.VideoInfo(video_id,this);
     }
-    //获取菜谱的评论列表
+    //获取评论列表
     private void Comments(int video_id){
         VideoModel videoModel=new VideoModel();
         videoModel.Comments(video_id,this);
@@ -51,10 +64,12 @@ public class VideoInfoActivity extends AppCompatActivity implements RetrofitList
         videoinfo=findViewById(R.id.videoinfo);
         specialarea=findViewById(R.id.specialarea);
         videopic=findViewById(R.id.videopic);
-        playvideo=findViewById(R.id.playvideo);
 
         Intent intent = getIntent();
         int videoid = intent.getIntExtra("id",0);
+
+        recyclerView =(RecyclerView) findViewById(R.id.recyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 
 
@@ -92,8 +107,11 @@ public class VideoInfoActivity extends AppCompatActivity implements RetrofitList
 
 
                 break;
-            //case Constants.GETCOMMENTBYID:
-            //评论待写
+            case Constants.GETCOMMENTBYID:
+                CommentsInfo commentsInfo = new CommentsInfo();
+                adapter =  new CommentAdapter(context,commentsInfo.getData());
+                recyclerView.setAdapter(adapter);
+                break;
         }
 
     }

@@ -68,16 +68,17 @@
         android:layout_weight="0"
         android:text="TextView" />
 
-    <ImageView
-        android:id="@+id/playvideo"
+    <EditText
+        android:id="@+id/comment"
         android:layout_width="match_parent"
-        android:layout_height="83dp"
-        android:layout_gravity="right"
+        android:layout_height="wrap_content"
         android:layout_weight="0"
-        app:srcCompat="@drawable/ic_play_circle_outline_black_24dp"
-        tools:ignore="VectorDrawableCompat" />
+        android:ems="10"
+        android:hint="输入你的评论"
+        android:inputType="textPersonName" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="0" />
