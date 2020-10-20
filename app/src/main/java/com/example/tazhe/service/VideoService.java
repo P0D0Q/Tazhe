@@ -5,11 +5,13 @@ import com.example.tazhe.beans.CommentsInfo;
 import com.example.tazhe.beans.VideoDetails;
 import com.example.tazhe.beans.VideoInfo;
 import com.example.tazhe.beans.VideoInfo2;
+import com.example.tazhe.beans.VideoType;
 
 import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 import retrofit2.http.Query;
 
 public interface VideoService {
@@ -23,10 +25,13 @@ public interface VideoService {
     @GET("api/comment/allComment")
     Call<List<CommentsInfo>> Comments(@Query("video_id") int video_id);
 
-    @GET("api/comment/addcomment")
+    @POST("api/comment/addcomment")
     Call<AddComments> AddComments(@Query("user_id") int user_id,
                                   @Query("comment") String comment,
                                   @Query("video_id") int video_id);
+
+    @GET("api/video/videoType")
+    Call<List<VideoType>> VideoType(@Query("video_id") int type_id);
 
 
 }

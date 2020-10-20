@@ -6,8 +6,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -20,6 +22,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.example.tazhe.R;
 import com.example.tazhe.adapter.CommentAdapter;
 import com.example.tazhe.adapter.VideoAdapter;
+import com.example.tazhe.beans.AddComments;
 import com.example.tazhe.beans.CommentsInfo;
 import com.example.tazhe.beans.VideoDetails;
 import com.example.tazhe.beans.VideoInfo;
@@ -36,6 +39,7 @@ public class VideoInfoActivity extends AppCompatActivity implements RetrofitList
     private TextView videoname,videoframer,videotype,videoinfo,specialarea;
     private VideoView videoView;
     private ImageButton back;
+    private Button sendcomment;
     private EditText comment;//评论视频
     private Context context;
 
@@ -57,9 +61,25 @@ public class VideoInfoActivity extends AppCompatActivity implements RetrofitList
         specialarea=findViewById(R.id.specialarea);
         videoView=findViewById(R.id.videoView);
         back=findViewById(R.id.back);
+        comment=findViewById(R.id.comment);
+        sendcomment=findViewById(R.id.sendcomment);
 
     }
 
+    private void showVideoInfo(int video_id) {
+        VideoModel videoModel=new VideoModel();
+        videoModel.VideoDetails(video_id,this);
+    }
+    //添加评论
+    private void addComments(int user_id,String comment,int video_id){
+        VideoModel videoModel=new VideoModel();
+        videoModel.AddComments(user_id,comment,video_id,VideoInfoActivity.this);
+    }
+    //评论列表
+    private void commentsList(int video_id){
+        VideoModel videoModel=new VideoModel();
+        videoModel.Comments(video_id,this);
+    }
 
     private void initEvents() {
         //播放事件待写
@@ -70,16 +90,42 @@ public class VideoInfoActivity extends AppCompatActivity implements RetrofitList
                 finish();
             }
         });
+
+        sendcomment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(comment.getText().toString().trim().equals("")){
+                    Toast.makeText(VideoInfoActivity.this, "搁那摁啥呢摁", Toast.LENGTH_SHORT).show();
+                }else {
+                    Intent intent = getIntent();
+                    int videoid = intent.getIntExtra("videoid", 0);
+
+                    SharedPreferences sp = getSharedPreferences("UserInfo",
+                            MODE_PRIVATE);
+                    String user_id = sp.getString("user_id", "");
+                    int typeint = Integer.parseInt(user_id);
+                    addComments(typeint, comment.getText().toString(), videoid);
+                }
+            }
+        });
     }
+
+    //视频详情
+
+
 
     private void initData() {
 
         Intent intent = getIntent();
         int videoid = intent.getIntExtra("videoid",0);
-        VideoModel videoModel=new VideoModel();
-        videoModel.VideoDetails(videoid,this);
 
-
+        SharedPreferences sp= getSharedPreferences("UserInfo",
+                MODE_PRIVATE);
+        String user_id =sp.getString("user_id", "");
+        int typeint = Integer.parseInt(user_id);
+        showVideoInfo(videoid);
+        //addComments(typeint,comment.getText().toString(),videoid);
+        commentsList(videoid);
     }
 
 
@@ -98,6 +144,19 @@ public class VideoInfoActivity extends AppCompatActivity implements RetrofitList
                 Toast.makeText(VideoInfoActivity.this, "网络错误2", Toast.LENGTH_SHORT).show();
             }
             break;
+
+            case Constants.ADDCOMMENTS:
+                AddComments add = (AddComments) o;
+                if(add.getMessage().equals("0")) {
+                    Toast.makeText(VideoInfoActivity.this, "你摁出去了一条消息", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    Toast.makeText(VideoInfoActivity.this, "网络错误2", Toast.LENGTH_SHORT).show();
+                }
+                break;
+
+
+
         }
     }
 
