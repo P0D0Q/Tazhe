@@ -2,6 +2,7 @@ package com.example.tazhe.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,18 +25,17 @@ import java.util.List;
 
 public class VideoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
-    private List<VideoInfo.DataBean> list;
+    private List<VideoInfo> list;
     private Context context;
-    //改，添2、
     private LayoutInflater layoutInflater;
 
-    public VideoAdapter (Context context,List<VideoInfo.DataBean> list) {
+    public VideoAdapter (Context context,List<VideoInfo> list) {
         this.context = context;
         this.list=list;
         layoutInflater=LayoutInflater.from(context);
     }
 
-    public void setList(List<VideoInfo.DataBean> list) {
+    public void setList(List<VideoInfo> list) {
         this.list = list;
         notifyDataSetChanged();
     }
@@ -47,7 +47,7 @@ public class VideoAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
 @Override
 public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
-    final VideoInfo.DataBean video = list.get(position);
+    final VideoInfo video = list.get(position);
     if (video == null)
         return;
 
@@ -56,8 +56,9 @@ public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position)
 
     //setText里是String，id是int
     viewHolder.videoname.setText(video.getVideo_name());
+    viewHolder.videotype.setText("类型："+video.getVideo_type());
     viewHolder.videotime.setText(video.getVideo_time());
-    viewHolder.videotype.setText(video.getVideo_type());
+
     Picasso.with(context).load(Constants.BASE_URL+video.getVideo_picture()).into(viewHolder.image);
 
     //按钮响应事件；点击按钮，跳转页面，显示店铺详情
@@ -65,8 +66,7 @@ public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position)
         @Override
         public void onClick(View view) {
             Intent intent = new Intent(view.getContext(), VideoInfoActivity.class);
-            /*intent.putExtra("video_id", video.getShop_id());
-            intent.putExtra("num",0);*/
+            intent.putExtra("videoid",video.getVideo_id());
             view.getContext().startActivity(intent);
         }
     });
@@ -87,8 +87,9 @@ public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position)
             super(view);
             image = (ImageView) view.findViewById(R.id.film_thumb);
             videoname = (TextView) view.findViewById(R.id.video_name);
-            videotime = (TextView) view.findViewById(R.id.video_time);
             videotype = (TextView) view.findViewById(R.id.video_type);
+            videotime = (TextView) view.findViewById(R.id.video_time);
+
         }
     }
 }

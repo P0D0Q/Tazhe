@@ -18,6 +18,7 @@ import com.example.tazhe.R;
 import com.example.tazhe.activity.VideoInfoActivity;
 import com.example.tazhe.beans.CommentsInfo;
 import com.example.tazhe.beans.VideoInfo;
+import com.example.tazhe.beans.VideoInfo2;
 import com.example.tazhe.constants.Constants;
 import com.squareup.picasso.Picasso;
 
@@ -27,11 +28,11 @@ import java.util.List;
 
 public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private List<CommentsInfo.DataBean> list;
+    private List<CommentsInfo> list;
     private Context context;
     private LayoutInflater layoutInflater;
 
-    public CommentAdapter (Context context,List<CommentsInfo.DataBean> list) {
+    public CommentAdapter (Context context,List<CommentsInfo> list) {
         this.context = context;
         this.list=list;
         layoutInflater=LayoutInflater.from(context);
@@ -46,7 +47,7 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        final CommentsInfo.DataBean comment = list.get(position);
+        final CommentsInfo comment = list.get(position);
         if (comment == null)
             return;
         ViewHolder viewHolder = (ViewHolder)holder;
@@ -56,7 +57,7 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         viewHolder.comment_username.setText(comment.getUsername());
         viewHolder.comment_info.setText(comment.getComment());
         viewHolder.comment_time.setText(comment.getComment_time());
-        Picasso.with(context).load(Constants.BASE_URL+comment.getUser_picture()).into(viewHolder.user_pic);
+        Picasso.with(context).load(Constants.BASE_URL+comment.getUser_picture() ).into(viewHolder.user_pic);
 
         //按钮响应事件
 

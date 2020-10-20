@@ -18,9 +18,10 @@ import com.example.tazhe.beans.VideoInfo;
 import com.example.tazhe.listener.RetrofitListener;
 import com.example.tazhe.model.VideoModel;
 
+import java.util.List;
 
 
-public class HomeFragment extends BaseFragment implements RetrofitListener<VideoInfo> {
+public class HomeFragment extends BaseFragment implements RetrofitListener<List<VideoInfo>> {
 
     private RecyclerView recyclerView;
     private VideoAdapter adapter;
@@ -55,8 +56,8 @@ public class HomeFragment extends BaseFragment implements RetrofitListener<Video
     }
 
     @Override
-    public void onSuccess(VideoInfo video, int flag) {
-        adapter =  new VideoAdapter(context,video.getData());
+    public void onSuccess(List<VideoInfo> video, int flag) {
+        adapter =  new VideoAdapter(context,video);
         recyclerView.setAdapter(adapter);
 
     }

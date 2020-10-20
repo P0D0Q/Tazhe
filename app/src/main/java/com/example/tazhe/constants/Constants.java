@@ -10,6 +10,7 @@ public class Constants {
     public final static int GETALLVIDEO=4;
     public final static int GETVIDEOINFO=5;
     public final static int GETCOMMENTBYID=6;
+    public final static int ADDCOMMENTS=7;
 
 
 }
