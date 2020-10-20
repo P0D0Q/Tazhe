@@ -73,7 +73,6 @@ public class CommentAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView comment_username,comment_info,comment_time;
         ImageView user_pic;
-        Button good,special;
 
         public ViewHolder(View view) {
             super(view);

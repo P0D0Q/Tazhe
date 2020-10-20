@@ -43,6 +43,10 @@ public class VideoInfoActivity extends AppCompatActivity implements RetrofitList
     private EditText comment;//评论视频
     private Context context;
 
+    private RecyclerView recyclerView;
+    private CommentAdapter commentAdapter;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +67,9 @@ public class VideoInfoActivity extends AppCompatActivity implements RetrofitList
         back=findViewById(R.id.back);
         comment=findViewById(R.id.comment);
         sendcomment=findViewById(R.id.sendcomment);
+
+        recyclerView = findViewById(R.id.recyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
     }
 
@@ -155,7 +162,11 @@ public class VideoInfoActivity extends AppCompatActivity implements RetrofitList
                 }
                 break;
 
-
+            case Constants.GETCOMMENTBYID:
+                List<CommentsInfo> comment =(List<CommentsInfo>) o;
+                commentAdapter = new CommentAdapter(VideoInfoActivity.this, comment);
+                recyclerView.setAdapter(commentAdapter);
+                break;
 
         }
     }
