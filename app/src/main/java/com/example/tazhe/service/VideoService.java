@@ -22,6 +22,7 @@ public interface VideoService {
     @GET("api/video/videoDetails")
     Call<VideoDetails> VideoDetails(@Query("video_id") int video_id);
 
+
     @GET("api/comment/allComment")
     Call<List<CommentsInfo>> Comments(@Query("video_id") int video_id);
 
@@ -31,7 +32,7 @@ public interface VideoService {
                                   @Query("video_id") int video_id);
 
     @GET("api/video/videoType")
-    Call<List<VideoType>> VideoType(@Query("video_id") int type_id);
+    Call<List<VideoType>> VideoType(@Query("type_id") int type_id);
 
 
 }

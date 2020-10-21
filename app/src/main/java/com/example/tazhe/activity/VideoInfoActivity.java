@@ -7,12 +7,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.MediaController;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
@@ -126,10 +128,10 @@ public class VideoInfoActivity extends AppCompatActivity implements RetrofitList
         Intent intent = getIntent();
         int videoid = intent.getIntExtra("videoid",0);
 
-        SharedPreferences sp= getSharedPreferences("UserInfo",
+        /*SharedPreferences sp= getSharedPreferences("UserInfo",
                 MODE_PRIVATE);
         String user_id =sp.getString("user_id", "");
-        int typeint = Integer.parseInt(user_id);
+        int typeint = Integer.parseInt(user_id);*/
         showVideoInfo(videoid);
         //addComments(typeint,comment.getText().toString(),videoid);
         commentsList(videoid);
@@ -147,6 +149,25 @@ public class VideoInfoActivity extends AppCompatActivity implements RetrofitList
                 videotype.setText("视频类型：" + videoDetails.getVideo_type());
                 specialarea.setText("视频时长：" + videoDetails.getVideo_time());
                 videoinfo.setText("简介：" + videoDetails.getVideo_introduce());
+
+                String videoUrl = Constants.BASE_URL+videoDetails.getVideo() ;
+
+                Uri uri = Uri.parse( videoUrl );
+
+                //设置视频控制器
+                videoView.setMediaController(new MediaController(this));
+
+                //播放完成回调
+                //videoView.setOnCompletionListener( new MyPlayerOnCompletionListener());
+
+                //设置视频路径
+                videoView.setVideoURI(uri);
+
+                //开始播放视频
+                videoView.start();
+
+
+
             } else {
                 Toast.makeText(VideoInfoActivity.this, "网络错误2", Toast.LENGTH_SHORT).show();
             }

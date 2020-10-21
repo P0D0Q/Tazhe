@@ -34,5 +34,10 @@ public class VideoModel extends RetrofitBaseModel {
         bindCallback(call, listener, Constants.ADDCOMMENTS);
     }
 
+    public void VideoType(   int type_id,final RetrofitListener listener) {
+        Call call = videoService.VideoType(type_id);
+        bindCallback(call, listener, Constants.GETCOMMENTBYID);
+    }
+
 
 }
