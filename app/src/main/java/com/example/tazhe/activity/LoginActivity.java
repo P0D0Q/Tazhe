@@ -110,6 +110,9 @@ public class LoginActivity extends AppCompatActivity implements RetrofitListener
                     MODE_PRIVATE);
             SharedPreferences.Editor editor = sp.edit();
             editor.putString("user_id", user.getData().getUser_id());
+            editor.putString("username", user.getData().getUsername());
+            editor.putString("sex", user.getData().getSex());
+            editor.putString("place", user.getData().getBornplace());
             editor.commit();
         }
 

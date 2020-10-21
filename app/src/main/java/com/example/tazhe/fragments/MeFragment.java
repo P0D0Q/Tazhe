@@ -2,6 +2,7 @@ package com.example.tazhe.fragments;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,6 +24,8 @@ import com.example.tazhe.beans.UserInfo;
 public class MeFragment extends BaseFragment {
 
     private ImageView account,message,collected,chart;
+    private ImageView avator;
+    private TextView username,place,sex;
 
     private Context context;
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle
@@ -41,6 +44,11 @@ public class MeFragment extends BaseFragment {
         collected = (ImageView) view.findViewById(R.id.collected);
         chart = (ImageView) view.findViewById(R.id.chart);
 
+        username = (TextView) view.findViewById(R.id.username);
+        place = (TextView) view.findViewById(R.id.place);
+        sex = (TextView) view.findViewById(R.id.sex);
+        avator = (ImageView) view.findViewById(R.id.useravator);
+
     }
 
     @Override
@@ -57,6 +65,7 @@ public class MeFragment extends BaseFragment {
 
     @Override
     void initData() {
+        //username.setText();
 
     }
 

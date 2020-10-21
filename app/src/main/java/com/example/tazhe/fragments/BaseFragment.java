@@ -63,6 +63,24 @@ public abstract class BaseFragment extends Fragment {
         sp =getActivity().getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
         return sp.getString("user_id", "");
     }
+    public String getUsername()
+    {
+        SharedPreferences sp;
+        sp =getActivity().getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
+        return sp.getString("username", "");
+    }
+    public String getSex()
+    {
+        SharedPreferences sp;
+        sp =getActivity().getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
+        return sp.getString("sex", "");
+    }
+    public String getPlace()
+    {
+        SharedPreferences sp;
+        sp =getActivity().getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
+        return sp.getString("place", "");
+    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
