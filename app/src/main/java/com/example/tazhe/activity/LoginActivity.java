@@ -113,6 +113,7 @@ public class LoginActivity extends AppCompatActivity implements RetrofitListener
             editor.putString("username", user.getData().getUsername());
             editor.putString("sex", user.getData().getSex());
             editor.putString("place", user.getData().getBornplace());
+            editor.putString("useravator", user.getData().getUser_picture());
             editor.commit();
         }
 

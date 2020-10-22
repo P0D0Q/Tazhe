@@ -19,7 +19,8 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
-        <activity android:name=".activity.type.NatureTypeActivity"></activity>
+        <activity android:name=".activity.CollectActivity"></activity>
+        <activity android:name=".activity.type.NatureTypeActivity" />
         <activity android:name=".activity.type.ArtTypeActivity" />
         <activity android:name=".activity.type.FictionTypeActivity" />
         <activity android:name=".activity.type.TechTypeActivity" />

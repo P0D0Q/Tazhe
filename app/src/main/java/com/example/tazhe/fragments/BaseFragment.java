@@ -81,6 +81,12 @@ public abstract class BaseFragment extends Fragment {
         sp =getActivity().getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
         return sp.getString("place", "");
     }
+    public String getUseravator()
+    {
+        SharedPreferences sp;
+        sp =getActivity().getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
+        return sp.getString("useravator", "");
+    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {

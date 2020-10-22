@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -17,14 +18,18 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.tazhe.R;
+import com.example.tazhe.activity.CollectActivity;
 import com.example.tazhe.activity.UserInfoActivity;
 import com.example.tazhe.activity.ui.me.MeViewModel;
 import com.example.tazhe.beans.UserInfo;
+import com.example.tazhe.constants.Constants;
+import com.squareup.picasso.Picasso;
 
 public class MeFragment extends BaseFragment {
 
     private ImageView account,message,collected,chart;
     private ImageView avator;
+    private Button account1,collected1;
     private TextView username,place,sex;
 
     private Context context;
@@ -44,6 +49,9 @@ public class MeFragment extends BaseFragment {
         collected = (ImageView) view.findViewById(R.id.collected);
         chart = (ImageView) view.findViewById(R.id.chart);
 
+        account1 = (Button) view.findViewById(R.id.account1);
+        collected1 = (Button) view.findViewById(R.id.collected1);
+
         username = (TextView) view.findViewById(R.id.username);
         place = (TextView) view.findViewById(R.id.place);
         sex = (TextView) view.findViewById(R.id.sex);
@@ -61,11 +69,38 @@ public class MeFragment extends BaseFragment {
             }
         });
 
+        collected.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), CollectActivity.class);
+                context.startActivity(intent);
+            }
+        });
+
+        account1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), UserInfoActivity.class);
+                context.startActivity(intent);
+            }
+        });
+
+        collected1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), CollectActivity.class);
+                context.startActivity(intent);
+            }
+        });
+
     }
 
     @Override
     void initData() {
-        //username.setText();
+        username.setText(getUsername());
+        place.setText(getPlace());
+        sex.setText(getSex());
+        Picasso.with(context).load(Constants.BASE_URL+getUseravator()).into(avator);
 
     }
 

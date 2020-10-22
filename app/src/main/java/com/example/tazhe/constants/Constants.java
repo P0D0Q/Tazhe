@@ -11,6 +11,7 @@ public class Constants {
     public final static int GETCOMMENTBYID=6;
     public final static int ADDCOMMENTS=7;
     public final static int VIDEOTYPE=8;
+    public final static int COLLECT=9;
 
 
 }
