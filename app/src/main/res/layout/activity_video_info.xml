@@ -32,6 +32,14 @@
             android:textColor="#F8F5F5"
             android:textSize="18sp" />
 
+        <ImageView
+            android:id="@+id/collectvideo"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#009688"
+            app:srcCompat="@drawable/ic_uncollect_24" />
+
     </LinearLayout>
 
     <LinearLayout

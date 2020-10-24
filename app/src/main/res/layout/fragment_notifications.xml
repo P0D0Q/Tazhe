@@ -18,12 +18,18 @@
             android:layout_height="50dp"
             android:layout_weight="1"
             android:hint="请输入搜索内容" />
+
+        <Button
+            android:id="@+id/btsearch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.2"
+            android:text="搜索" />
     </LinearLayout>
 
-    <ListView
-        android:id="@+id/lv"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/searchview"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"></ListView>
+        android:layout_height="wrap_content" />
 
 </LinearLayout>

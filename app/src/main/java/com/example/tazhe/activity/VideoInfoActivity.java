@@ -25,12 +25,14 @@ import com.example.tazhe.R;
 import com.example.tazhe.adapter.CommentAdapter;
 import com.example.tazhe.adapter.VideoAdapter;
 import com.example.tazhe.beans.AddComments;
+import com.example.tazhe.beans.CollectResult;
 import com.example.tazhe.beans.CommentsInfo;
 import com.example.tazhe.beans.VideoDetails;
 import com.example.tazhe.beans.VideoInfo;
 import com.example.tazhe.beans.VideoInfo2;
 import com.example.tazhe.constants.Constants;
 import com.example.tazhe.listener.RetrofitListener;
+import com.example.tazhe.model.UserModel;
 import com.example.tazhe.model.VideoModel;
 import com.squareup.picasso.Picasso;
 
@@ -42,6 +44,7 @@ public class VideoInfoActivity extends AppCompatActivity implements RetrofitList
     private VideoView videoView;
     private ImageButton back;
     private Button sendcomment;
+    private ImageView collect;
     private EditText comment;//评论视频
     private Context context;
 
@@ -69,6 +72,7 @@ public class VideoInfoActivity extends AppCompatActivity implements RetrofitList
         back=findViewById(R.id.back);
         comment=findViewById(R.id.comment);
         sendcomment=findViewById(R.id.sendcomment);
+        collect=findViewById(R.id.collectvideo);
 
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -88,6 +92,11 @@ public class VideoInfoActivity extends AppCompatActivity implements RetrofitList
     private void commentsList(int video_id){
         VideoModel videoModel=new VideoModel();
         videoModel.Comments(video_id,this);
+    }
+
+    private void collectVideo(int user_id,int video_id){
+        UserModel userModel=new UserModel();
+        userModel.CollectResult(user_id,video_id,this);
     }
 
     private void initEvents() {
@@ -115,6 +124,21 @@ public class VideoInfoActivity extends AppCompatActivity implements RetrofitList
                     int typeint = Integer.parseInt(user_id);
                     addComments(typeint, comment.getText().toString(), videoid);
                 }
+            }
+        });
+
+        collect.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SharedPreferences sp = getSharedPreferences("UserInfo",
+                        MODE_PRIVATE);
+                String user_id = sp.getString("user_id", "");
+                int c_user = Integer.parseInt(user_id);
+
+                Intent intent = getIntent();
+                int c_video = intent.getIntExtra("videoid",0);
+
+                collectVideo(c_user,c_video);
             }
         });
     }
@@ -184,11 +208,21 @@ public class VideoInfoActivity extends AppCompatActivity implements RetrofitList
                 break;
 
             case Constants.GETCOMMENTBYID:
-                List<CommentsInfo> comment =(List<CommentsInfo>) o;
+                    List<CommentsInfo> comment =(List<CommentsInfo>) o;
                 commentAdapter = new CommentAdapter(VideoInfoActivity.this, comment);
                 recyclerView.setAdapter(commentAdapter);
                 break;
 
+            case Constants.COLLECTVIDEO:
+                CollectResult collectResult=(CollectResult) o;
+                if(collectResult.getMessage().equals("0")){
+                    collect.setImageResource(R.drawable.ic_collected_24);
+                    Toast.makeText(VideoInfoActivity.this, "收藏成功", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    Toast.makeText(VideoInfoActivity.this, "网络错误2", Toast.LENGTH_SHORT).show();
+                }
+                break;
         }
     }
 
