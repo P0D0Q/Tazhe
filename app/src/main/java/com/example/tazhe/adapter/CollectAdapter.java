@@ -50,7 +50,7 @@ public class CollectAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 //
 
         //setText里是String，id是int
-        viewHolder.videoname.setText("视频名："+collectListByUser.getVideo_name());
+        viewHolder.videoname.setText(collectListByUser.getVideo_name());
         viewHolder.videotype.setText("创作者："+collectListByUser.getVideo_framer());
         viewHolder.videotime.setText("时长："+collectListByUser.getVideo_time());
 

@@ -15,7 +15,9 @@ public class Constants {
     public final static int SEARCHVIDEO=10;
     public final static int SEARCHUSER=11;
     public final static int COLLECTLIST=12;
-    public final static int USERDETAILS=12;
+    public final static int USERDETAILS=13;
+    public final static int ISCOLLECTED=14;
+    public final static int UNCOLLECT=15;
 
 
 }

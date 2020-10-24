@@ -7,6 +7,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -26,7 +29,9 @@ import com.example.tazhe.adapter.CommentAdapter;
 import com.example.tazhe.adapter.VideoAdapter;
 import com.example.tazhe.beans.AddComments;
 import com.example.tazhe.beans.CollectResult;
+import com.example.tazhe.beans.CollectStatus;
 import com.example.tazhe.beans.CommentsInfo;
+import com.example.tazhe.beans.UnCollect;
 import com.example.tazhe.beans.VideoDetails;
 import com.example.tazhe.beans.VideoInfo;
 import com.example.tazhe.beans.VideoInfo2;
@@ -50,6 +55,8 @@ public class VideoInfoActivity extends AppCompatActivity implements RetrofitList
 
     private RecyclerView recyclerView;
     private CommentAdapter commentAdapter;
+
+    private String result="0";
 
 
 
@@ -99,6 +106,16 @@ public class VideoInfoActivity extends AppCompatActivity implements RetrofitList
         userModel.CollectResult(user_id,video_id,this);
     }
 
+    private void isCollected(int user_id,int video_id){
+        UserModel userModel=new UserModel();
+        userModel.CollectStatus(user_id,video_id,VideoInfoActivity.this);
+    }
+
+    private void unCollect(int user_id,int video_id){
+        UserModel userModel=new UserModel();
+        userModel.UnCollect(user_id,video_id,this);
+    }
+
     private void initEvents() {
         //播放事件待写
         //返回待写
@@ -138,7 +155,15 @@ public class VideoInfoActivity extends AppCompatActivity implements RetrofitList
                 Intent intent = getIntent();
                 int c_video = intent.getIntExtra("videoid",0);
 
-                collectVideo(c_user,c_video);
+                Drawable.ConstantState image1 = collect.getDrawable().getConstantState();
+                Drawable.ConstantState image2 = getResources().getDrawable(R.drawable.ic_collected_24).getConstantState();
+                Drawable.ConstantState image3 = getResources().getDrawable(R.drawable.ic_uncollect_24).getConstantState();
+
+                if(image1.equals(image2)){
+                    unCollect(c_user,c_video);
+                }else if(image1.equals(image3)){
+                    collectVideo(c_user, c_video);
+                }
             }
         });
     }
@@ -152,13 +177,15 @@ public class VideoInfoActivity extends AppCompatActivity implements RetrofitList
         Intent intent = getIntent();
         int videoid = intent.getIntExtra("videoid",0);
 
-        /*SharedPreferences sp= getSharedPreferences("UserInfo",
+        SharedPreferences sp = getSharedPreferences("UserInfo",
                 MODE_PRIVATE);
-        String user_id =sp.getString("user_id", "");
-        int typeint = Integer.parseInt(user_id);*/
+        String user_id = sp.getString("user_id", "");
+        int cuserid = Integer.parseInt(user_id);
+
         showVideoInfo(videoid);
         //addComments(typeint,comment.getText().toString(),videoid);
         commentsList(videoid);
+        isCollected(cuserid,videoid);
     }
 
 
@@ -213,14 +240,30 @@ public class VideoInfoActivity extends AppCompatActivity implements RetrofitList
                 recyclerView.setAdapter(commentAdapter);
                 break;
 
+            case Constants.ISCOLLECTED:
+                CollectStatus collectStatus = (CollectStatus) o;
+                if(collectStatus.getSta().equals("0")){
+                    collect.setImageResource(R.drawable.ic_collected_24);
+                }else if(collectStatus.getSta().equals("1")){
+                    collect.setImageResource(R.drawable.ic_uncollect_24);
+                }
+                break;
+
             case Constants.COLLECTVIDEO:
                 CollectResult collectResult=(CollectResult) o;
                 if(collectResult.getMessage().equals("0")){
                     collect.setImageResource(R.drawable.ic_collected_24);
                     Toast.makeText(VideoInfoActivity.this, "收藏成功", Toast.LENGTH_SHORT).show();
                 }
-                else{
-                    Toast.makeText(VideoInfoActivity.this, "网络错误2", Toast.LENGTH_SHORT).show();
+                break;
+
+            case Constants.UNCOLLECT:
+                UnCollect unCollect = (UnCollect) o;
+                if(unCollect.getMessage().equals("0")){
+                    collect.setImageResource(R.drawable.ic_uncollect_24);
+                    Toast.makeText(VideoInfoActivity.this, "取消收藏成功", Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(VideoInfoActivity.this, "网络错误", Toast.LENGTH_SHORT).show();
                 }
                 break;
         }

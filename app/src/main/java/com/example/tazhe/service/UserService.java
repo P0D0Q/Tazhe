@@ -2,8 +2,10 @@ package com.example.tazhe.service;
 
 import com.example.tazhe.beans.CollectListByUser;
 import com.example.tazhe.beans.CollectResult;
+import com.example.tazhe.beans.CollectStatus;
 import com.example.tazhe.beans.SearchUser;
 import com.example.tazhe.beans.SearchVideo;
+import com.example.tazhe.beans.UnCollect;
 import com.example.tazhe.beans.UserDetails;
 import com.example.tazhe.beans.UserInfo;
 
@@ -35,6 +37,14 @@ public interface UserService {
     @GET("user/collect")
     Call<CollectResult> Collect(@Query("user_id") int user_id,
                                 @Query("video_id") int video_id);
+
+    @GET("user/iscollect")
+    Call<CollectStatus> IsCollected(@Query("user_id") int user_id,
+                                @Query("video_id") int video_id);
+
+    @GET("user/collect/delete")
+    Call<UnCollect> DeleteCollected(@Query("user_id") int user_id,
+                                    @Query("video_id") int video_id);
 
     @GET("user/findCollect")
     Call<List<CollectListByUser>> CollectList(@Query("user_id") int user_id);

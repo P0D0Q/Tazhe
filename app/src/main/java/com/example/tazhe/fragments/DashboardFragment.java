@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -31,7 +32,7 @@ import com.example.tazhe.activity.ui.dashboard.DashboardViewModel;
 public class DashboardFragment extends BaseFragment {
 
     private ImageView foodtype,techtype,fictiontype,arttype,naturetype;
-    private RecyclerView recyclerView;
+    private Button food,tech,fiction,art,nature;
 
     private Context context;
 
@@ -50,7 +51,13 @@ public class DashboardFragment extends BaseFragment {
         arttype = view.findViewById(R.id.arttype);
         naturetype = view.findViewById(R.id.naturetype);
 
-        recyclerView = view.findViewById(R.id.videorecommendlist);
+        food = view.findViewById(R.id.foodbutton);
+        tech = view.findViewById(R.id.techbutton);
+        fiction = view.findViewById(R.id.fictionbutton);
+        art = view.findViewById(R.id.artbutton);
+        nature = view.findViewById(R.id.naturebutton);
+
+
     }
 
     @Override
@@ -88,6 +95,46 @@ public class DashboardFragment extends BaseFragment {
         });
 
         naturetype.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), NatureTypeActivity.class);
+                context.startActivity(intent);
+            }
+        });
+
+        food.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), NatureTypeActivity.class);
+                context.startActivity(intent);
+            }
+        });
+
+        tech.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), NatureTypeActivity.class);
+                context.startActivity(intent);
+            }
+        });
+
+        fiction.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), NatureTypeActivity.class);
+                context.startActivity(intent);
+            }
+        });
+
+        art.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), NatureTypeActivity.class);
+                context.startActivity(intent);
+            }
+        });
+
+        nature.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), NatureTypeActivity.class);

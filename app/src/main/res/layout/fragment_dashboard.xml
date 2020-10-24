@@ -4,74 +4,130 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
     android:orientation="vertical"
-    tools:context=".fragments.DashboardFragment" >
+    tools:context=".fragments.DashboardFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="75dp">
-
-        <ImageView
-            android:id="@+id/foodtype"
-            android:layout_width="142dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:src="@drawable/ic_foodtype_24" />
-
-        <ImageView
-            android:id="@+id/techtype"
-            android:layout_width="142dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:src="@drawable/ic_techtype_24" />
-
-        <ImageView
-            android:id="@+id/fictiontype"
-            android:layout_width="142dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:src="@drawable/ic_fictiontype_24" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="75dp"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:id="@+id/arttype"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:src="@drawable/ic_arttype_24" />
-
-        <ImageView
-            android:id="@+id/naturetype"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:src="@drawable/ic_naturetype_24" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="356dp"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/textView"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="49dp"
-            android:background="#009688"
-            android:text="视频推荐"
-            android:textAlignment="center"
-            android:textColor="#FFFFFF"
-            android:textSize="30sp" />
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/videorecommendlist"
+            <ImageView
+                android:id="@+id/foodtype"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:background="#CCC8C8"
+                android:src="@drawable/ic_foodtype_24" />
+
+            <Button
+                android:id="@+id/foodbutton"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_weight="6"
+                android:background="#CCC8C8"
+                android:text="美食" />
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/techtype"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:background="#CCC8C8"
+                android:src="@drawable/ic_techtype_24" />
+
+            <Button
+                android:id="@+id/techbutton"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_weight="6"
+                android:background="#CCC8C8"
+                android:text="科技" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/fictiontype"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:background="#CCC8C8"
+                android:src="@drawable/ic_fictiontype_24" />
+
+            <Button
+                android:id="@+id/fictionbutton"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_weight="6"
+                android:background="#CCC8C8"
+                android:text="科幻" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/arttype"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:background="#CCC8C8"
+                android:src="@drawable/ic_arttype_24" />
+
+            <Button
+                android:id="@+id/artbutton"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_weight="6"
+                android:background="#CCC8C8"
+                android:text="艺术" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/naturetype"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_weight="1"
+                android:background="#CCC8C8"
+                android:src="@drawable/ic_naturetype_24" />
+
+            <Button
+                android:id="@+id/naturebutton"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_weight="6"
+                android:background="#CCC8C8"
+                android:text="自然" />
+        </LinearLayout>
+
     </LinearLayout>
+
 </LinearLayout>

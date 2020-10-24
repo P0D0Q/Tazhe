@@ -41,6 +41,16 @@ public class UserModel extends RetrofitBaseModel {
         bindCallback(call,listener, Constants.COLLECTVIDEO);
     }
 
+    public void CollectStatus( int user_id, int video_id,final RetrofitListener listener)  {
+        Call call=userService.IsCollected(user_id,video_id);
+        bindCallback(call,listener, Constants.ISCOLLECTED);
+    }
+
+    public void UnCollect( int user_id, int video_id,final RetrofitListener listener)  {
+        Call call=userService.DeleteCollected(user_id,video_id);
+        bindCallback(call,listener, Constants.UNCOLLECT);
+    }
+
     public void CollectList(int user_id,final RetrofitListener listener)  {
         Call call=userService.CollectList(user_id);
         bindCallback(call,listener, Constants.COLLECTLIST);
