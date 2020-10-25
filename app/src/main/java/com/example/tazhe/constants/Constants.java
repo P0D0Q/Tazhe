@@ -18,6 +18,12 @@ public class Constants {
     public final static int USERDETAILS=13;
     public final static int ISCOLLECTED=14;
     public final static int UNCOLLECT=15;
+    public final static int FRAMERDETAILS=16;
+    public final static int SEARCHFRAMER=17;
+    public final static int FOLLOWFRAMER=18;
+    public final static int FOLLOWLIST=19;
+    public final static int ISFOLLOWED=20;
+    public final static int UNFOLLOW=21;
 
 
 }

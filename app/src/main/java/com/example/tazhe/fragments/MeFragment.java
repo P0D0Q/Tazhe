@@ -19,6 +19,7 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.example.tazhe.R;
 import com.example.tazhe.activity.CollectActivity;
+import com.example.tazhe.activity.FollowActivity;
 import com.example.tazhe.activity.UserInfoActivity;
 import com.example.tazhe.activity.ui.me.MeViewModel;
 import com.example.tazhe.beans.UserInfo;
@@ -27,9 +28,9 @@ import com.squareup.picasso.Picasso;
 
 public class MeFragment extends BaseFragment {
 
-    private ImageView account,message,collected,chart;
+    private ImageView account,follow,collected,chart;
     private ImageView avator;
-    private Button account1,collected1;
+    private Button account1,collected1,follow1;
     private TextView username,place,sex;
 
     private Context context;
@@ -45,12 +46,13 @@ public class MeFragment extends BaseFragment {
     @Override
     void initViews() {
         account = (ImageView) view.findViewById(R.id.account);
-        message = (ImageView) view.findViewById(R.id.message);
+        follow = (ImageView) view.findViewById(R.id.follow);
         collected = (ImageView) view.findViewById(R.id.collected);
         chart = (ImageView) view.findViewById(R.id.chart);
 
         account1 = (Button) view.findViewById(R.id.account1);
         collected1 = (Button) view.findViewById(R.id.collected1);
+        follow1 = (Button) view.findViewById(R.id.follow1);
 
         username = (TextView) view.findViewById(R.id.username);
         place = (TextView) view.findViewById(R.id.place);
@@ -89,6 +91,22 @@ public class MeFragment extends BaseFragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), CollectActivity.class);
+                context.startActivity(intent);
+            }
+        });
+
+        follow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), FollowActivity.class);
+                context.startActivity(intent);
+            }
+        });
+
+        follow1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), FollowActivity.class);
                 context.startActivity(intent);
             }
         });

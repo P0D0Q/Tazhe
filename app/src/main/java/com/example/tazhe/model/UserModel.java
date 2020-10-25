@@ -36,9 +36,19 @@ public class UserModel extends RetrofitBaseModel {
         bindCallback(call,listener, Constants.SEARCHUSER);
     }
 
+    public void FindFramer(String framername,  final RetrofitListener listener)  {
+        Call call=userService.FindFramer(framername);
+        bindCallback(call,listener, Constants.SEARCHFRAMER);
+    }
+
     public void CollectResult( int user_id, int video_id,final RetrofitListener listener)  {
         Call call=userService.Collect(user_id,video_id);
         bindCallback(call,listener, Constants.COLLECTVIDEO);
+    }
+
+    public void FollowResult( int user_id, int framer_id,final RetrofitListener listener)  {
+        Call call=userService.Follow(user_id,framer_id);
+        bindCallback(call,listener, Constants.FOLLOWFRAMER);
     }
 
     public void CollectStatus( int user_id, int video_id,final RetrofitListener listener)  {
@@ -46,9 +56,19 @@ public class UserModel extends RetrofitBaseModel {
         bindCallback(call,listener, Constants.ISCOLLECTED);
     }
 
+    public void FollowStatus( int user_id, int framer_id,final RetrofitListener listener)  {
+        Call call=userService.IsFollowed(user_id,framer_id);
+        bindCallback(call,listener, Constants.ISFOLLOWED);
+    }
+
     public void UnCollect( int user_id, int video_id,final RetrofitListener listener)  {
         Call call=userService.DeleteCollected(user_id,video_id);
         bindCallback(call,listener, Constants.UNCOLLECT);
+    }
+
+    public void UnFollow( int user_id, int framer_id,final RetrofitListener listener)  {
+        Call call=userService.DeleteFollowed(user_id,framer_id);
+        bindCallback(call,listener, Constants.UNFOLLOW);
     }
 
     public void CollectList(int user_id,final RetrofitListener listener)  {
@@ -56,9 +76,19 @@ public class UserModel extends RetrofitBaseModel {
         bindCallback(call,listener, Constants.COLLECTLIST);
     }
 
+    public void FollowList(int user_id,final RetrofitListener listener)  {
+        Call call=userService.FollowList(user_id);
+        bindCallback(call,listener, Constants.FOLLOWLIST);
+    }
+
     public void UserDetails(int user_id, final RetrofitListener listener)  {
         Call call=userService.UserDetails(user_id);
         bindCallback(call,listener, Constants.USERDETAILS);
+    }
+
+    public void FramerDetails(int framer_id, final RetrofitListener listener)  {
+        Call call=userService.FramerDetails(framer_id);
+        bindCallback(call,listener, Constants.FRAMERDETAILS);
     }
 
 }

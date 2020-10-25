@@ -29,9 +29,11 @@ import com.example.tazhe.activity.NavigationActivity;
 import com.example.tazhe.activity.VideoInfoActivity;
 import com.example.tazhe.activity.ui.notifications.NotificationsViewModel;
 import com.example.tazhe.adapter.CommentAdapter;
+import com.example.tazhe.adapter.SearchFramerAdapter;
 import com.example.tazhe.adapter.SearchUserAdapter;
 import com.example.tazhe.adapter.SearchVideoAdapter;
 import com.example.tazhe.beans.CommentsInfo;
+import com.example.tazhe.beans.SearchFramer;
 import com.example.tazhe.beans.SearchUser;
 import com.example.tazhe.beans.SearchVideo;
 import com.example.tazhe.beans.VideoInfo;
@@ -53,6 +55,7 @@ public class NotificationsFragment extends BaseFragment implements RetrofitListe
 
     private SearchVideoAdapter searchVideoAdapter;
     private SearchUserAdapter searchUserAdapter;
+    private SearchFramerAdapter searchFramerAdapter;
 
 
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle
@@ -80,7 +83,7 @@ public class NotificationsFragment extends BaseFragment implements RetrofitListe
             @Override
             public void onClick(View v) {
                 getVideo();
-                getUser();
+                getFramer();
             }
         });
     }
@@ -91,9 +94,9 @@ public class NotificationsFragment extends BaseFragment implements RetrofitListe
 
     }
 
-    public void getUser(){
+    public void getFramer(){
         UserModel userModel = new UserModel();
-        userModel.FindUser(mEditText.getText().toString().trim(),this);
+        userModel.FindFramer(mEditText.getText().toString().trim(),this);
 
     }
 
@@ -115,10 +118,10 @@ public class NotificationsFragment extends BaseFragment implements RetrofitListe
                 Toast.makeText(mContext, "你发出去了", Toast.LENGTH_SHORT).show();
                 break;
 
-            case Constants.SEARCHUSER:
-                List<SearchUser> searchUserList = (List<SearchUser>) o;
-                searchUserAdapter = new SearchUserAdapter(mContext, searchUserList);
-                searchview.setAdapter(searchUserAdapter);
+            case Constants.SEARCHFRAMER:
+                List<SearchFramer> searchFramerList = (List<SearchFramer>) o;
+                searchFramerAdapter = new SearchFramerAdapter(mContext, searchFramerList);
+                searchview.setAdapter(searchFramerAdapter);
                 Toast.makeText(mContext, "你发出去了", Toast.LENGTH_SHORT).show();
                 break;
         }
