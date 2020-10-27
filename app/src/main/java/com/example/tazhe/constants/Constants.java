@@ -24,6 +24,7 @@ public class Constants {
     public final static int FOLLOWLIST=19;
     public final static int ISFOLLOWED=20;
     public final static int UNFOLLOW=21;
+    public final static int UPLOADVIDEO=22;
 
 
 }

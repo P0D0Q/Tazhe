@@ -3,6 +3,7 @@ package com.example.tazhe.service;
 import com.example.tazhe.beans.AddComments;
 import com.example.tazhe.beans.CommentsInfo;
 import com.example.tazhe.beans.SearchVideo;
+import com.example.tazhe.beans.UploadVideo;
 import com.example.tazhe.beans.VideoDetails;
 import com.example.tazhe.beans.VideoInfo;
 import com.example.tazhe.beans.VideoInfo2;
@@ -37,5 +38,8 @@ public interface VideoService {
 
     @GET("api/video/findVideo")
     Call<List<SearchVideo>> FindVideo(@Query("video_name") String video_name);
+
+    @POST("relgoods/images")
+    Call<UploadVideo> UploadVideo();
 
 }

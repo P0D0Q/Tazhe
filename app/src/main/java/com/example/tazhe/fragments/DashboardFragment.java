@@ -105,7 +105,7 @@ public class DashboardFragment extends BaseFragment {
         food.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), NatureTypeActivity.class);
+                Intent intent = new Intent(getActivity(), FoodTypeActivity.class);
                 context.startActivity(intent);
             }
         });
@@ -113,7 +113,7 @@ public class DashboardFragment extends BaseFragment {
         tech.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), NatureTypeActivity.class);
+                Intent intent = new Intent(getActivity(), TechTypeActivity.class);
                 context.startActivity(intent);
             }
         });
@@ -121,7 +121,7 @@ public class DashboardFragment extends BaseFragment {
         fiction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), NatureTypeActivity.class);
+                Intent intent = new Intent(getActivity(), FictionTypeActivity.class);
                 context.startActivity(intent);
             }
         });
@@ -129,7 +129,7 @@ public class DashboardFragment extends BaseFragment {
         art.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), NatureTypeActivity.class);
+                Intent intent = new Intent(getActivity(), ArtTypeActivity.class);
                 context.startActivity(intent);
             }
         });

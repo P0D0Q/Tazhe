@@ -36,11 +36,16 @@ public class VideoModel extends RetrofitBaseModel {
 
     public void VideoType(   int type_id,final RetrofitListener listener) {
         Call call = videoService.VideoType(type_id);
-        bindCallback(call, listener, Constants.GETCOMMENTBYID);
+        bindCallback(call, listener, Constants.VIDEOTYPE);
     }
 
     public void FindVideo(   String video_name,final RetrofitListener listener) {
         Call call = videoService.FindVideo(video_name);
+        bindCallback(call, listener, Constants.SEARCHVIDEO);
+    }
+
+    public void UploadVideo( final RetrofitListener listener) {
+        Call call = videoService.UploadVideo();
         bindCallback(call, listener, Constants.SEARCHVIDEO);
     }
 

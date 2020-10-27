@@ -56,7 +56,6 @@ public class VideoInfoActivity extends AppCompatActivity implements RetrofitList
     private RecyclerView recyclerView;
     private CommentAdapter commentAdapter;
 
-    private String result="0";
 
 
 
